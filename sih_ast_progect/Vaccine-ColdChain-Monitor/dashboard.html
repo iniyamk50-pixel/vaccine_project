@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vaccine Cold Chain Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef5fb;
+}
+
+header{
+background:linear-gradient(90deg,#1565C0,#42A5F5);
+color:white;
+padding:20px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+.container{
+width:95%;
+margin:30px auto;
+}
+
+.controls{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:15px;
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.12);
+margin-bottom:25px;
+}
+
+.left-controls{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+#search{
+width:320px;
+padding:12px;
+border:2px solid #1565C0;
+border-radius:8px;
+font-size:15px;
+}
+
+#filter{
+padding:12px;
+border:2px solid #1565C0;
+border-radius:8px;
+font-size:15px;
+cursor:pointer;
+}
+
+#count{
+font-size:18px;
+font-weight:bold;
+color:#1565C0;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+thead{
+background:linear-gradient(90deg,#1565C0,#1E88E5);
+}
+
+th{
+color:white;
+padding:15px;
+font-size:15px;
+text-transform:uppercase;
+}
+
+td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid #eee;
+}
+
+tbody tr:nth-child(even){
+background:#f8fbff;
+}
+
+tbody tr:hover{
+background:#E3F2FD;
+}
+
+.safe{
+background:#E8F5E9;
+color:#2E7D32;
+padding:6px 12px;
+border-radius:20px;
+font-weight:bold;
+display:inline-block;
+}
+
+.breach{
+background:#FFEBEE;
+color:#C62828;
+padding:6px 12px;
+border-radius:20px;
+font-weight:bold;
+display:inline-block;
+}
+
+.view-btn{
+background:#1565C0;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.view-btn:hover{
+background:#0D47A1;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+🧊 Vaccine Cold Chain Monitoring Dashboard
+
+</header>
+
+<div class="container">
+
+<div class="controls">
+
+<div class="left-controls">
+
+<input
+type="text"
+id="search"
+placeholder="🔍 Search by Reading ID or Box ID">
+
+<select id="filter">
+
+<option value="all">All Records</option>
+<option value="safe">Safe</option>
+<option value="breach">Breach</option>
+
+</select>
+
+</div>
+
+<p id="count">
+Showing 0 Records
+</p>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+<th>Box ID</th>
+<th>Temperature</th>
+<th>Status</th>
+<th>Location</th>
+<th>Recorded At</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tableBody">
+
+<tr>
+
+<td colspan="7">
+Loading Data...
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
