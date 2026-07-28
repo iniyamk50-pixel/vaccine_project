@@ -1,0 +1,236 @@
+body{
+
+    background:#eef7ff;
+
+}
+
+
+
+/* TITLE */
+
+
+.dashboard-title{
+
+    text-align:center;
+    margin:30px;
+    color:#0066aa;
+
+}
+
+
+
+/* SEARCH AREA */
+
+
+.controls{
+
+    width:90%;
+    margin:auto;
+
+    display:flex;
+    justify-content:center;
+    gap:20px;
+
+}
+
+
+
+input,select{
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+    font-size:16px;
+
+}
+
+
+
+input{
+
+    width:300px;
+
+}
+
+
+
+/* COUNT */
+
+
+#count{
+
+    width:90%;
+
+    margin:25px auto;
+
+    color:#0066aa;
+
+    font-weight:bold;
+
+}
+
+
+
+/* TABLE */
+
+
+table{
+
+    width:90%;
+
+    margin:auto;
+
+    background:white;
+
+    border-collapse:collapse;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.1);
+
+}
+
+
+
+th{
+
+    background:#0077cc;
+
+    color:white;
+
+    padding:16px;
+
+}
+
+
+
+td{
+
+    padding:14px;
+
+    text-align:center;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+
+
+tr:hover{
+
+    background:#e3f2fd;
+
+}
+
+
+
+/* STATUS */
+
+
+.safe{
+
+    color:green;
+
+    font-weight:bold;
+
+}
+
+
+
+.breach{
+
+    color:red;
+
+    font-weight:bold;
+
+}
+
+
+
+/* SUMMARY CARDS */
+
+
+.dashboard-cards{
+
+    width:90%;
+
+    margin:40px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.dashboard-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.1);
+
+}
+
+
+
+.dashboard-card h2{
+
+    color:#0077cc;
+
+    font-size:30px;
+
+}
+
+
+
+.dashboard-card p{
+
+    color:#666;
+
+}
+
+
+
+@media(max-width:900px){
+
+.dashboard-cards{
+
+    grid-template-columns:1fr;
+
+}
+
+
+.controls{
+
+    flex-direction:column;
+
+    width:80%;
+
+}
+
+
+input{
+
+    width:100%;
+
+}
+
+
+
+}
