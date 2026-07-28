@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Vaccine Cold Chain Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: #eef5fb;
+      }
+
+      header {
+        background: linear-gradient(90deg, #1565c0, #42a5f5);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .dashboard-cards {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin: 25px;
+      }
+
+      .card {
+        background: white;
+        padding: 20px;
+        width: 240px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .card h3 {
+        color: #1565c0;
+        margin-bottom: 10px;
+      }
+
+      .card h2 {
+        font-size: 30px;
+      }
+
+      .container {
+        width: 95%;
+        margin: 30px auto;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        margin-bottom: 25px;
+      }
+
+      .left-controls {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      #search {
+        width: 320px;
+        padding: 12px;
+        border: 2px solid #1565c0;
+        border-radius: 8px;
+        font-size: 15px;
+      }
+
+      #filter {
+        padding: 12px;
+        border: 2px solid #1565c0;
+        border-radius: 8px;
+        font-size: 15px;
+        cursor: pointer;
+      }
+
+      #count {
+        font-size: 18px;
+        font-weight: bold;
+        color: #1565c0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      thead {
+        background: linear-gradient(90deg, #1565c0, #1e88e5);
+      }
+
+      th {
+        color: white;
+        padding: 15px;
+        font-size: 15px;
+        text-transform: uppercase;
+      }
+
+      td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+      }
+
+      tbody tr:nth-child(even) {
+        background: #f8fbff;
+      }
+
+      tbody tr:hover {
+        background: #e3f2fd;
+      }
+
+      .safe {
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        display: inline-block;
+      }
+
+      .breach {
+        background: #ffebee;
+        color: #c62828;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        display: inline-block;
+      }
+
+      .view-btn {
+        background: #1565c0;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .view-btn:hover {
+        background: #0d47a1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>🧊 Vaccine Cold Chain Monitoring Dashboard</header>
+
+    <!-- New Dashboard Cards -->
+
+<div class="dashboard-cards">
+
+  <div class="card">
+    <h3>🌡 Average Temperature</h3>
+    <h2 id="avgTemp">0 °C</h2>
+  </div>
+
+
+  <div class="card" id="alarmCard">
+    <h3>🚨 Alarm Status</h3>
+    <h2 id="alarmStatus">SAFE</h2>
+  </div>
+
+
+  <div class="card">
+    <h3>📦 Total Vaccine Boxes</h3>
+    <h2 id="boxCount">0</h2>
+  </div>
+
+
+  <div class="card">
+    <h3>⚠️ Temperature Breaches</h3>
+    <h2 id="breachCount">0</h2>
+  </div>
+
+
+  <div class="card">
+    <h3>❄️ Safe Readings</h3>
+    <h2 id="safeCount">0</h2>
+  </div>
+
+
+  <div class="card">
+    <h3>⏱ Last Updated</h3>
+    <h2 id="lastUpdate">--</h2>
+  </div>
+
+</div>    <div class="container">
+      <div class="controls">
+        <div class="left-controls">
+          <input
+            type="text"
+            id="search"
+            placeholder="🔍 Search by Reading ID or Box ID"
+          />
+
+          <select id="filter">
+            <option value="all">All Records</option>
+            <option value="safe">Safe</option>
+            <option value="breach">Breach</option>
+          </select>
+        </div>
+
+        <p id="count">Showing 0 Records</p>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Box ID</th>
+            <th>Temperature</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Recorded At</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="tableBody">
+          <tr>
+            <td colspan="7">Loading Data...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
